@@ -22,6 +22,7 @@ public class Customer {
 	private String lastName;
 	private Integer age;
 	private List<Order> orders = new ArrayList<>();
+	private String ordersState;
 
 	public Customer() {
 	}
@@ -33,11 +34,12 @@ public class Customer {
 		this.age = age;
 	}
 
-	public Customer(String firstName, String lastName, Integer age, String... orderStates) {
+	public Customer(String firstName, String lastName, Integer age, String ordersState, String... orderStates) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
+		this.ordersState = ordersState;
 		Stream.of(orderStates).forEach(s -> this.getOrders().add(new Order(this, s)));
 	}
 
@@ -68,6 +70,11 @@ public class Customer {
 		return orders;
 	}
 
+	@Column(name = "ORDERSSTATE")
+	public String getOrdersState() {
+		return ordersState;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -86,6 +93,10 @@ public class Customer {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+	public void setOrdersState(String ordersState) {
+		this.ordersState = ordersState;
 	}
 
 	@Override

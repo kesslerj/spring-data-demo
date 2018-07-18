@@ -1,5 +1,6 @@
 package de.aclue.springdatademo.persistence.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,7 +9,7 @@ import de.aclue.springdatademo.persistence.entity.Customer;
 
 /**
  *
- * @author Jonas Keßler (jonas.kessler@aclue.de)
+ * @author Jonas Keßler (jonas.kessler@acando.de)
  */
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
@@ -18,5 +19,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 	int countByAge(int age);
 
+	List<Customer> findByOrdersState(String ordersState);
+
+	List<Customer> findDistinctByOrdersState(String ordersState);
 
 }
