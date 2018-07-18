@@ -9,7 +9,7 @@ import de.aclue.springdatademo.persistence.entity.Customer;
 
 /**
  *
- * @author Jonas Keßler (jonas.kessler@acando.de)
+ * @author Jonas Keßler (jonas.kessler@aclue.de)
  */
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 

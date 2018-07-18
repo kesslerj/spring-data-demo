@@ -2,6 +2,7 @@ package de.aclue.springdatademo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import de.aclue.springdatademo.persistence.entity.Customer;
 import de.aclue.springdatademo.persistence.repository.CustomerRepository;
+import de.aclue.springdatademo.persistence.repository.projection.CustomerNameProjection;
 
 /**
  *
@@ -34,7 +36,20 @@ public class CustomerService {
 		// return customerRepository.findByFirstNameAndLastName("Peter", "Pan");
 
 		// return customerRepository.findByOrdersState("New");
-		return customerRepository.findByOrders_State("New");
+		// return customerRepository.findByOrders_State("New");
+
+		// return customerRepository.findAllFirstNames().toString();
+
+		return projections();
+	}
+
+	private Object projections() {
+		List<CustomerNameProjection> projections = new ArrayList<>();
+
+		return projections
+				.stream()
+				.map(p -> p.getFirstName() + " " + p.getLastName())
+				.collect(Collectors.toList());
 	}
 
 	@PostConstruct
