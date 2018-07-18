@@ -44,7 +44,9 @@ public class CustomerService {
 	}
 
 	private Object projections() {
-		List<CustomerNameProjection> projections = new ArrayList<>();
+		List<CustomerNameProjection> projections = customerRepository.findProjectionsByAgeLessThan(21);
+		// List<CustomerNameProjection> projections = customerRepository.findProjectionsBy();
+		// List<CustomerNameProjection> projections = customerRepository.findDistinctProjectionsBy();
 
 		return projections
 				.stream()
