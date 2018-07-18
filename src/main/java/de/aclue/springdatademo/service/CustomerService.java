@@ -33,7 +33,8 @@ public class CustomerService {
 
 		// return customerRepository.findByFirstNameAndLastName("Peter", "Pan");
 
-		return customerRepository.findByOrdersState("New");
+		// return customerRepository.findByOrdersState("New");
+		return customerRepository.findByOrders_State("New");
 	}
 
 	@PostConstruct
@@ -44,7 +45,7 @@ public class CustomerService {
 	private List<Customer> createCustomers() {
 		List<Customer> entities = new ArrayList<>();
 		entities.add(new Customer("Peter", "Pan", 40, "New", "Processed"));
-		entities.add(new Customer("Peter", "Meier", 20));
+		entities.add(new Customer("Peter", "Meier", 20, "Process", "New"));
 		entities.add(new Customer("Hans", "Schmidt", 30));
 		entities.add(new Customer("Hans", "Schmidt", 40));
 		entities.add(new Customer("Axel", "Schmidt", 50));

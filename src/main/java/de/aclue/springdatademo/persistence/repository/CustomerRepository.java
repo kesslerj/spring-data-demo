@@ -19,8 +19,12 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 	int countByAge(int age);
 
+	// searches for customer.ordersState =
 	List<Customer> findByOrdersState(String ordersState);
 
 	List<Customer> findDistinctByOrdersState(String ordersState);
+
+	// searches for customer.orders.state =
+	List<Customer> findByOrders_State(String state);
 
 }
