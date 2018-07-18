@@ -9,9 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
- * @author Jonas Keßler (jonas.kessler@aclue.de)
+ * @author Jonas Keßler (jonas.kessler@acando.de)
  */
 @Entity
 @Table(name = "T_ORDER")
@@ -22,8 +24,7 @@ public class Order {
 	private int amount;
 	private String state;
 
-	public Order(String state) {
-		this.state = state;
+	public Order() {
 	}
 
 	public Order(Customer customer, String state) {
@@ -38,6 +39,7 @@ public class Order {
 		return this.id;
 	}
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "CUSTOMER_ID")
 	public Customer getCustomer() {
