@@ -1,14 +1,15 @@
 package de.aclue.springdatademo.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import de.aclue.springdatademo.persistence.entity.Customer;
+import de.aclue.springdatademo.persistence.repository.CustomerRepository;
 
 /**
  *
@@ -17,23 +18,25 @@ import de.aclue.springdatademo.persistence.entity.Customer;
 @Service
 public class CustomerService {
 
-	public List<Customer> allCustomers() {
-		Customer c1 = new Customer("Juergen", "Hoeller", 40);
-		Customer c2 = new Customer("Josh", "Long", 41);
-		Customer c3 = new Customer("Stephane", "Nicoll", 42);
+	@Autowired
+	private CustomerRepository customerRepository;
 
-		return Arrays.asList(c1, c2, c3);
+	public List<Customer> allCustomers() {
+		return customerRepository.findAll();
 	}
 
-	public List<Customer> currentQuery() {
-		Customer c1 = new Customer("Juergen", "Hoeller", 40);
-		return Arrays.asList(c1);
+	public Object currentQuery() {
+
+		// return customerRepository.findAllById(Arrays.asList(1l, 2l, 3l));
+		// return customerRepository.countByAge(30);
+		// return customerRepository.findById(1l);
+
+		return customerRepository.findByFirstNameAndLastName("Peter", "Pan");
 	}
 
 	@PostConstruct
 	private void storeCustomers() {
-		// TODO: persist created customers
-		createCustomers();
+		customerRepository.saveAll(createCustomers());
 	}
 
 	private List<Customer> createCustomers() {
